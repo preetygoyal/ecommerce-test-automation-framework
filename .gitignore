@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+venv/
+.venv/
+env/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Reports
+report.html
+*.log
+
+# Env / secrets
+.env
+
+# OS
+.DS_Store

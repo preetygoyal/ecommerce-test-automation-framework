@@ -1,0 +1,14 @@
+{
+  "api/tests/test_account_api.py::test_create_account_success": true,
+  "api/tests/test_account_api.py::test_verify_login_with_valid_credentials": true,
+  "api/tests/test_account_api.py::test_verify_login_with_invalid_credentials": true,
+  "api/tests/test_account_api.py::test_verify_login_missing_params_returns_400": true,
+  "api/tests/test_account_api.py::test_get_user_detail_by_email": true,
+  "api/tests/test_account_api.py::test_update_account": true,
+  "api/tests/test_account_api.py::test_delete_account_removes_user": true,
+  "api/tests/test_brands_api.py::test_get_brands_list_returns_200_and_brands": true,
+  "api/tests/test_products_api.py::test_get_products_list_returns_200_and_products": true,
+  "api/tests/test_products_api.py::test_products_list_does_not_support_post": true,
+  "api/tests/test_search_product_api.py::test_search_product_with_valid_term_returns_matches": true,
+  "api/tests/test_search_product_api.py::test_search_product_missing_param_returns_400": true
+}
