@@ -11,9 +11,10 @@ class BasePage:
     def __init__(self, page: Page):
         self.page = page
         self.page.set_default_timeout(UI_DEFAULT_TIMEOUT_MS)
+        self.page.set_default_navigation_timeout(UI_DEFAULT_TIMEOUT_MS)
 
     def goto(self, path: str = "/"):
-        self.page.goto(f"{BASE_URL}{path}")
+        self.page.goto(f"{BASE_URL}{path}", wait_until="load")
         return self
 
     def is_visible(self, locator) -> bool:

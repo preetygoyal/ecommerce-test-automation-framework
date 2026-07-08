@@ -101,3 +101,7 @@ Playwright traces on failure for debugging.
   slow, redundant UI signups for tests that only need to *be logged in*.
 - **Unique, disposable test data** (`common/test_data.py`) means tests never
   collide with each other, even when run in parallel or repeatedly in CI.
+- **One automatic UI rerun in CI** (`--reruns 1`) absorbs transient slowness from
+  automationexercise.com itself (a free public site shared by QA learners
+  worldwide) without masking real bugs -- a genuine locator/logic defect fails
+  again on the rerun and still shows up red.

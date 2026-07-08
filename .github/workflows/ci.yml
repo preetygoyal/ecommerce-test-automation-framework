@@ -55,7 +55,12 @@ jobs:
         run: playwright install --with-deps chromium
 
       - name: Run UI tests
-        run: pytest ui/tests -m ui --html=ui-report.html --self-contained-html -v
+        # automationexercise.com is a free public practice site shared by
+        # QA learners worldwide and is occasionally slow/unstable under load
+        # (unrelated to this suite's code). One automatic rerun absorbs that
+        # transient site flakiness without masking real locator/logic bugs,
+        # which fail again on the rerun too.
+        run: pytest ui/tests -m ui --reruns 1 --reruns-delay 5 --html=ui-report.html --self-contained-html -v
 
       - name: Upload UI report
         if: always()
