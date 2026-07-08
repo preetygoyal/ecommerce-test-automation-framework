@@ -22,15 +22,23 @@ class ProductsPage(BasePage):
         return self
 
     def add_first_product_to_cart(self):
-        button = self.add_to_cart_buttons.first
-        button.scroll_into_view_if_needed()
-        button.click()
-        return self
+        return self.add_product_to_cart_by_index(0)
 
     def add_product_to_cart_by_index(self, index: int):
-        button = self.add_to_cart_buttons.nth(index)
-        button.scroll_into_view_if_needed()
-        button.click()
+        """
+        automationexercise.com's "Add to cart" button lives inside a
+        hover-triggered overlay (`.product-overlay`) on each product card.
+        Clicking the flat, page-wide `.add-to-cart` locator by index worked
+        for the first card but was unreliable for later ones: the overlay
+        button isn't reliably positioned/interactable until the card itself
+        is hovered, which is what a real user would do. Scoping the click to
+        the specific card -- hover it, then click *its* add-to-cart button --
+        fixes the repeated "intercepted by <h2>" failures seen in CI.
+        """
+        card = self.product_cards.nth(index)
+        card.scroll_into_view_if_needed()
+        card.hover()
+        card.locator(".add-to-cart").first.click()
         return self
 
     def continue_shopping(self):
