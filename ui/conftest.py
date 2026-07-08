@@ -13,6 +13,15 @@ from common.api_client import ApiClient
 from common.test_data import build_account_payload, unique_email
 
 
+@pytest.fixture(scope="session")
+def browser_context_args(browser_context_args):
+    """pytest-playwright's default viewport (1280x720) is narrow enough that
+    automationexercise.com's 'All Products' heading overlaps the top row of
+    the product grid, intermittently intercepting clicks on those cards in
+    CI. A wider viewport avoids that responsive-layout overlap."""
+    return {**browser_context_args, "viewport": {"width": 1600, "height": 1000}}
+
+
 @pytest.fixture
 def registered_user():
     """Create an account via the API, yield its credentials, delete it afterwards."""
